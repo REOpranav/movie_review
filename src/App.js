@@ -1,6 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
+import { Form, Button, Input } from "antd";
 
 function App() {
   async function fecthing(movieTitle) {
@@ -29,7 +30,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     fecthing(movies);
-    setMovies("");
+    setMovies(" ");
   };
 
   return (
@@ -39,18 +40,29 @@ function App() {
           <img src={imagesURL} class="img-fluid" alt="Responsive image" />
         </div>
         <div class="paras">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={movies}
-              onChange={(e) => setMovies(e.target.value)}
-              placeholder="Movie name"
-            />
+          <Form onFinish={handleSubmit} autoFocus>
+            <Form.Item
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter Movie name!",
+                },
+              ]}
+            >
+              <Input
+                placeholder="enter movie name"
+                value={movies}
+                onChange={(e) => setMovies(e.target.value)}
+              />
+            </Form.Item>
 
-            <button type="button" onClick={handleSubmit}>
-              Submit
-            </button>
-          </form>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" onClick={handleSubmit}>
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
 
           {ans.Response === "True" ? (
             <>
