@@ -15,6 +15,7 @@ function App() {
 
       let ans = await final.json();
       setAns(ans);
+      console.log(ans);
       let imageUrl = await ans.Poster;
       setImageURL(imageUrl);
     } catch (err) {
@@ -36,36 +37,40 @@ function App() {
   return (
     <div className="App bg-black one">
       <div>
-        <div class="full-black-bg images">
+        <div class="full-black-bg">
           <img src={imagesURL} class="img-fluid" alt="Responsive image" />
         </div>
-        <div class="paras">
-          <Form onFinish={handleSubmit} autoFocus>
-            <Form.Item
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter Movie name!",
-                },
-              ]}
-            >
-              <Input
-                placeholder="enter movie name"
-                value={movies}
-                onChange={(e) => setMovies(e.target.value)}
-              />
-            </Form.Item>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
+        <div class="paras">
+          <div className="form">
+            <Form onFinish={handleSubmit} autoFocus>
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter Movie name!",
+                  },
+                ]}
+                style={{ display: "inline-block", marginRight: "8px" }}
+              >
+                <Input
+                  placeholder="enter movie name"
+                  value={movies}
+                  onChange={(e) => setMovies(e.target.value)}
+                />
+              </Form.Item>
+
+              <Form.Item style={{ display: "inline-block" }}>
+                <Button type="primary" htmlType="submit" onClick={handleSubmit}>
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
 
           {ans.Response === "True" ? (
-            <>
+            <main className="main_content">
               <div>
                 <h2 class="lead display-4">{ans.Title}</h2>
               </div>
@@ -86,7 +91,7 @@ function App() {
                   </h6>
                 </div>
               ) : (
-                console.log("enter name properly")
+                alert("enter movie name proprly")
               )}
 
               <div>
@@ -100,7 +105,7 @@ function App() {
               <div>
                 <p>Released : {ans.Released}</p>
               </div>
-            </>
+            </main>
           ) : null}
         </div>
       </div>

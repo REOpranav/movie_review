@@ -3,15 +3,15 @@
 }
 
 .full-black-bg {
-  position: absolute;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-end;
+   display: flex;
+   justify-content: end;
 }
 
 .full-black-bg img {
   mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  filter : contrast(130%) 
+  filter : contrast(130%);
+  position: absolute;
+  height: 100vh;
 }
 
 .paras {
@@ -25,4 +25,8 @@
 
 .paras input {
   outline: none;
+}
+
+.form {
+  width: max-content;
 }
