@@ -14,19 +14,22 @@
   height: 100vh;
 }
 
-.paras {
-  position: relative;
-  color: white;
+.thee{
+  border: 1px solid white;
+  display: flex;
 }
 
-.paras h2 {
-  position: relative;
-}
-
-.paras input {
-  outline: none;
+.form input {
+  width: 50vh;
 }
 
 .form {
-  width: max-content;
+   padding: 20px;
+   margin-top: auto;
+}
+
+.paras{
+  color:white;
+  border: 1px solid white;
+  width : 50%
 }
