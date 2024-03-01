@@ -15,21 +15,30 @@
 }
 
 .thee{
-  border: 1px solid white;
   display: flex;
 }
 
 .form input {
   width: 50vh;
+  padding: 10px;
 }
 
 .form {
-   padding: 20px;
-   margin-top: auto;
+   padding: 10px;
 }
 
 .paras{
   color:white;
-  border: 1px solid white;
-  width : 50%
+  width : 50%;
+  margin-left: 15%;
+  margin-top: 3%;
+}
+
+.main_content{
+   /* border: 1px solid blue; */
+   padding: 20px;
+}
+
+.button{
+  padding: 10px;
 }
