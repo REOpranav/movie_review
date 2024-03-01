@@ -24,25 +24,20 @@ function App() {
     }
   }
 
-  // <Title level={2} style={colors}>
-  //           Some thing went wroung <FallOutlined />
-  //         </Title>
-
   const [falut, setfault] = useState("");
   const [ans, setAns] = useState("");
   const [movies, setMovies] = useState("");
   const [imagesURL, setImageURL] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fecthing(movies);
-    setMovies(" ");
-  };
-
   const { Title } = Typography;
+  const { Search } = Input;
 
   const colors = {
     color: "white",
+  };
+
+  const handleSearch = (val) => {
+    fecthing(val);
   };
 
   return (
@@ -54,36 +49,21 @@ function App() {
       <div class="paras">
         <div className="thee">
           <div className="form">
-            <Form onFinish={handleSubmit} autoFocus>
-              <Form.Item
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please enter Movie name!",
-                  },
-                ]}
-                style={{ display: "inline-block", marginRight: "8px" }}
-              >
-                <Input
-                  placeholder="enter movie name"
-                  value={movies}
-                  onChange={(e) => setMovies(e.target.value)}
-                />
-              </Form.Item>
-
-              <Form.Item style={{ display: "inline-block" }}>
-                <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-                  Submit
-                </Button>
-              </Form.Item>
-            </Form>
+            <Search
+              placeholder="search movies"
+              allowClear
+              enterButton="Search"
+              size="large"
+              onSearch={handleSearch}
+              onChange={(e) => setMovies(e.target.value)}
+            />
+            {/* </Form> */}
           </div>
         </div>
 
         {ans.Response === "True" ? (
           <main className="main_content">
-            <Title style={{ color: "white" }}>{ans.Title}</Title>
+            <Title style={{ color: "White" }}>{ans.Title}</Title>
 
             <Title style={colors} level={4}>
               {ans.Plot}
