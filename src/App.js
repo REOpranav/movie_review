@@ -6,7 +6,7 @@ function App() {
   async function fecthing(movieTitle) {
     try {
       const encodedMovieTitle = encodeURIComponent(movieTitle);
-      const apiUrl = `http://www.omdbapi.com/?i=tt3896198&apikey=221e524a&t=${encodedMovieTitle}`;
+      const apiUrl = `https://www.omdbapi.com/?i=tt3896198&apikey=221e524a&t=${encodedMovieTitle}`;
       let final = await fetch(apiUrl);
       if (!final.ok) {
         throw new Error("Enter Movie name properly");
