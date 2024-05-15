@@ -1,8 +1,15 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Form, Button, Input, Typography } from "antd";
+import { Form, Button, Input, Typography, Image } from "antd";
+
 
 function App() {
+
+  const [falut, setfault] = useState("");
+  const [ans, setAns] = useState("");
+  const [movies, setMovies] = useState("");
+  const [imagesURL, setImageURL] = useState("");
+
   async function fecthing(movieTitle) {
     try {
       const encodedMovieTitle = encodeURIComponent(movieTitle);
@@ -14,25 +21,25 @@ function App() {
 
       let ans = await final.json();
       setAns(ans);
-      console.log(ans);
-      let imageUrl = await ans.Poster;
+      let imageUrl = await ans?.Poster;
       setImageURL(imageUrl);
     } catch (err) {
-      setfault(err.message);
+      setfault('error in name');
     }
   }
 
-  const [falut, setfault] = useState("");
-  const [ans, setAns] = useState("");
-  const [movies, setMovies] = useState("");
-  const [imagesURL, setImageURL] = useState("");
-
+  console.log(ans);
   const { Title } = Typography;
   const { Search } = Input;
 
   const colors = {
-    color: "white",
+    color: "grey",
+    letterSpacing : '1px',
   };
+
+  const ans_color = {
+    color:'smokewhite'
+  }
 
   const handleSearch = (val) => {
     fecthing(val);
@@ -45,61 +52,67 @@ function App() {
       </div>
 
       <div class="paras">
-        <div className="thee">
+        <div className="form_outline">
           <div className="form">
             <Search
               placeholder="search movies"
               allowClear
-              enterButton="Search"
+              enterButton="Review"
               size="large"
               onSearch={handleSearch}
-              onChange={(e) => setMovies(e.target.value)}
+              onChange={(e) => setMovies(e.target.value) || ''}
             />
-            {/* </Form> */}
           </div>
         </div>
+        </div>
+
+        <div className="movie_contant" >
 
         {ans.Response === "True" ? (
           <main className="main_content">
-            <Title style={{ color: "White" }}>{ans.Title}</Title>
+            <Title style={{ color: "white" ,fontFamily:'monospace'}}>{ans.Title}</Title>
 
             <Title style={colors} level={4}>
-              {ans.Plot}
+              <span style={ans_color}>{ans.Plot}</span>
             </Title>
 
             <Title level={4} style={colors}>
-              Director : {ans.Director}
+              Director : <span style={ans_color}>{ans.Director}</span>
             </Title>
 
             <Title level={4} style={colors}>
               {" "}
-              Writer : {ans.Writer}
+              Writer :  <span style={ans_color}>{ans.Writer}</span>
             </Title>
 
             {ans.Response === "True" ? (
-              <Title level={4} style={colors}>
-                IMDb Rating : {ans.Response ? ans.Ratings[0].Value : null}
+              <Title level={4} style={colors}  >
+                IMDb Rating : {ans.Response ? <span style={ans_color}> {ans.Ratings[0]?.Value} </span>: null}
               </Title>
             ) : (
               alert("enter movie name proprly")
             )}
 
             <Title level={4} style={colors}>
-              RunTime : {ans.Runtime}
+              RunTime :    <span style={ans_color}> {ans.Runtime} </span>
             </Title>
 
             <Title level={4} style={colors}>
               {" "}
-              Genre : {ans.Genre}
+              Genre :   <span style= {ans_color}> {ans.Genre} </span>
             </Title>
 
             <Title level={4} style={colors}>
-              Released : {ans.Released}
+              Released :    <span style={ans_color}>{ans.Released}</span>
             </Title>
           </main>
-        ) : null}
+        ) :
+        <div className="error_image_div">  
+          <Image width={800} src="/error.jpg" className="error_image" preview={false}/>
+        </div>
+      }
       </div>
-    </div>
+      </div>
   );
 }
 

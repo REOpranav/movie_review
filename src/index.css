@@ -18,8 +18,12 @@ body{
   height: 100vh;
 }
 
-.thee{
-  display: flex;
+.form_outline{
+  display: inline-flex;
+}
+
+.form {
+   padding: 10px;
 }
 
 .form input {
@@ -27,20 +31,21 @@ body{
   padding: 10px;
 }
 
-.form {
-   padding: 10px;
+.error_image_div{
+  position: relative;
+  display: flex; 
+  justify-content: center;
 }
 
 .paras{
   color:white;
   width : 50%;
-  margin-left: 15%;
   margin-top: 3%;
 }
 
 .main_content{
-   /* border: 1px solid blue; */
    padding: 20px;
+   width: 50%;
 }
 
 .button{
