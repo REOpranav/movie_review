@@ -38,7 +38,7 @@ function App() {
   };
 
   const ans_color = {
-    color:'smokewhite'
+    color:'white'
   }
 
   const handleSearch = (val) => {
@@ -67,7 +67,6 @@ function App() {
         </div>
 
         <div className="movie_contant" >
-
         {ans.Response === "True" ? (
           <main className="main_content">
             <Title style={{ color: "white" ,fontFamily:'monospace'}}>{ans.Title}</Title>
@@ -90,7 +89,7 @@ function App() {
                 IMDb Rating : {ans.Response ? <span style={ans_color}> {ans.Ratings[0]?.Value} </span>: null}
               </Title>
             ) : (
-              alert("enter movie name proprly")
+               null
             )}
 
             <Title level={4} style={colors}>
@@ -107,10 +106,13 @@ function App() {
             </Title>
           </main>
         ) :
-        <div className="error_image_div">  
-          <Image width={800} src="/error.jpg" className="error_image" preview={false}/>
-        </div>
+            ans.Error === 'Movie not found!' ? 
+              <div className="error_image_div">  
+                <Image width={800} src="/error.jpg" className="error_image" preview={false}/>
+             </div> :  <Title level={2} style={{color:'grey',textAlign:'center'}}> Enter Movie Name </Title>
+        
       }
+
       </div>
       </div>
   );
